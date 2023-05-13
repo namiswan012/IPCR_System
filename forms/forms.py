@@ -67,9 +67,9 @@ class IPCR_GradingSheet_form(forms.Form):
     GradingSheet_Accomplished = forms.IntegerField(label = 'Accomplished', min_value = 0, max_value = 100, widget=forms.NumberInput, required = False)      
 
 #6   
-class IPCR_StudentAdvised_form(forms.Form):
-    StudentAdvised_Target = forms.IntegerField(label = 'Target', min_value = 0, max_value = 100, widget=forms.NumberInput, required= False)
-    StudentAdvised_Accomplished = forms.IntegerField(label = 'Accomplished', min_value = 0, max_value = 100, widget=forms.NumberInput, required = False)      
+class IPCR_StudentAdviced_form(forms.Form):
+    StudentAdviced_Target = forms.IntegerField(label = 'Target', min_value = 0, max_value = 100, widget=forms.NumberInput, required= False)
+    StudentAdviced_Accomplished = forms.IntegerField(label = 'Accomplished', min_value = 0, max_value = 100, widget=forms.NumberInput, required = False)      
 
 #7
 class IPCR_AccomplishmentReport_form(forms.Form):

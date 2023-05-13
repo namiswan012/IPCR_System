@@ -16,8 +16,17 @@ def IPCRForm(request):
     previous_response_attendancesheet = IPCR_AttendanceSheet_model.objects.filter(author=request.user).last()
     previous_response_classrecord = IPCR_ClassRecord_model.objects.filter(author=request.user).last()
     previous_response_teachingeffectiveness = IPCR_TeachingEffectiveness_model.objects.filter(author=request.user).last()
-
-    
+    previous_response_classroomobservation = IPCR_ClassroomObservation_model.objects.filter(author=request.user).last()
+    previous_response_midtermtosrubrics = IPCR_MidtermTOSRubrics_model.objects.filter(author=request.user).last()
+    previous_response_finaltermtosrubrics = IPCR_FinaltermTOSRubrics_model.objects.filter(author=request.user).last()
+    previous_response_midtermtestquestions = IPCR_MidtermTestQuestions_model.objects.filter(author=request.user).last()
+    previous_response_finaltermtestquestions = IPCR_FinaltermTestQuestions_model.objects.filter(author=request.user).last()
+    previous_response_midtermanswerkey = IPCR_MidtermAnswerKey_model.objects.filter(author=request.user).last()
+    previous_response_finaltermanswerkey = IPCR_FinaltermAnswerKey_model.objects.filter(author=request.user).last()
+    previous_response_gradingsheet = IPCR_GradingSheet_model.objects.filter(author=request.user).last()
+    previous_response_studentadviced = IPCR_StudentAdviced_model.objects.filter(author=request.user).last()
+    previous_response_accomplishmentreport = IPCR_AccomplishmentReport_model.objects.filter(author=request.user).last()
+   
     
     if (request.method == 'POST'):
         form_syllabus = IPCR_Syllabus_form(request.POST)
@@ -27,7 +36,17 @@ def IPCRForm(request):
         form_attendancesheet = IPCR_AttendanceSheet_form(request.POST)              
         form_classrecord = IPCR_ClassRecord_form(request.POST)              
         form_teachingeffectiveness = IPCR_TeachingEffectiveness_form(request.POST)   
-        
+        form_classroomobservation = IPCR_ClassroomObservation_form(request.POST)   
+        form_midtermtosrubrics = IPCR_MidtermTOSRubrics_form(request.POST)   
+        form_finaltermtosrubrics = IPCR_FinaltermTOSRubrics_form(request.POST)   
+        form_midtermtestquestions = IPCR_MidtermTestQuestions_form(request.POST)   
+        form_finaltermtestquestions = IPCR_FinaltermTestQuestions_form(request.POST)   
+        form_midtermanswerkey = IPCR_MidtermAnswerKey_form(request.POST)   
+        form_finaltermanswerkey = IPCR_FinaltermAnswerKey_form(request.POST)   
+        form_gradingsheet = IPCR_GradingSheet_form(request.POST)   
+        form_studentadviced = IPCR_StudentAdviced_form(request.POST)   
+        form_accomplishmentreport = IPCR_AccomplishmentReport_form(request.POST)   
+
         
               
         if (form_syllabus.is_valid()):
@@ -118,8 +137,137 @@ def IPCRForm(request):
             IPCR_teachingeffectiveness.save()
 
             messages.success(request, "The IPCR Form has been saved.")
+            
+        if (form_classroomobservation.is_valid()):
+            cd = form_classroomobservation.cleaned_data
+            IPCR_classroomobservation =IPCR_ClassroomObservation_model(
+               ClassroomObservation_Target = cd['ClassroomObservation_Target'],
+               ClassroomObservation_Accomplished = cd ['ClassroomObservation_Accomplished'],
+            )
 
+            IPCR_classroomobservation.author = request.user
+            IPCR_classroomobservation.ClassroomObservation_Submitted = date.today()
+            IPCR_classroomobservation.save()
 
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_midtermtosrubrics.is_valid()):
+            cd = form_midtermtosrubrics.cleaned_data
+            IPCR_midtermtosrubrics =IPCR_MidtermTOSRubrics_model(
+               MidtermTOSRubrics_Target = cd['MidtermTOSRubrics_Target'],
+               MidtermTOSRubrics_Accomplished = cd ['MidtermTOSRubrics_Accomplished'],
+            )
+
+            IPCR_midtermtosrubrics.author = request.user
+            IPCR_midtermtosrubrics.MidtermTOSRubrics_Submitted = date.today()
+            IPCR_midtermtosrubrics.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+            
+        if (form_finaltermtosrubrics.is_valid()):
+            cd = form_finaltermtosrubrics.cleaned_data
+            IPCR_finaltermtosrubrics =IPCR_FinaltermTOSRubrics_model(
+               FinaltermTOSRubrics_Target = cd['FinaltermTOSRubrics_Target'],
+               FinaltermTOSRubrics_Accomplished = cd ['FinaltermTOSRubrics_Accomplished'],
+            )
+
+            IPCR_finaltermtosrubrics.author = request.user
+            IPCR_finaltermtosrubrics.FinaltermTOSRubrics_Submitted = date.today()
+            IPCR_finaltermtosrubrics.save()
+
+            messages.success(request, "The IPCR Form has been saved.")            
+
+        if (form_midtermtestquestions.is_valid()):
+            cd = form_midtermtestquestions.cleaned_data
+            IPCR_midtermtestquestions =IPCR_MidtermTestQuestions_model(
+               MidtermTestQuestions_Target = cd['MidtermTestQuestions_Target'],
+               MidtermTestQuestions_Accomplished = cd ['MidtermTestQuestions_Accomplished'],
+            )
+
+            IPCR_midtermtestquestions.author = request.user
+            IPCR_midtermtestquestions.MidtermTestQuestions_Submitted = date.today()
+            IPCR_midtermtestquestions.save()
+
+            messages.success(request, "The IPCR Form has been saved.")            
+
+        if (form_finaltermtestquestions.is_valid()):
+            cd = form_finaltermtestquestions.cleaned_data
+            IPCR_finaltermtestquestions =IPCR_FinaltermTestQuestions_model(
+               FinaltermTestQuestions_Target = cd['FinaltermTestQuestions_Target'],
+               FinaltermTestQuestions_Accomplished = cd ['FinaltermTestQuestions_Accomplished'],
+            )
+
+            IPCR_finaltermtestquestions.author = request.user
+            IPCR_finaltermtestquestions.FinaltermTestQuestions_Submitted = date.today()
+            IPCR_finaltermtestquestions.save()
+
+            messages.success(request, "The IPCR Form has been saved.")             
+
+        if (form_midtermanswerkey.is_valid()):
+            cd = form_midtermanswerkey.cleaned_data
+            IPCR_midtermanswerkey =IPCR_MidtermAnswerKey_model(
+               MidtermAnswerKey_Target = cd['MidtermAnswerKey_Target'],
+               MidtermAnswerKey_Accomplished = cd ['MidtermAnswerKey_Accomplished'],
+            )
+
+            IPCR_midtermanswerkey.author = request.user
+            IPCR_midtermanswerkey.MidtermAnswerKey_Submitted = date.today()
+            IPCR_midtermanswerkey.save()
+
+            messages.success(request, "The IPCR Form has been saved.")    
+
+        if (form_finaltermanswerkey.is_valid()):
+            cd = form_finaltermanswerkey.cleaned_data
+            IPCR_finaltermanswerkey =IPCR_FinaltermAnswerKey_model(
+               FinaltermAnswerKey_Target = cd['FinaltermAnswerKey_Target'],
+               FinaltermAnswerKey_Accomplished = cd ['FinaltermAnswerKey_Accomplished'],
+            )
+
+            IPCR_finaltermanswerkey.author = request.user
+            IPCR_finaltermanswerkey.FinaltermAnswerKey_Submitted = date.today()
+            IPCR_finaltermanswerkey.save()
+
+            messages.success(request, "The IPCR Form has been saved.")   
+            
+        if (form_gradingsheet.is_valid()):
+            cd = form_gradingsheet.cleaned_data
+            IPCR_gradingsheet =IPCR_GradingSheet_model(
+               GradingSheet_Target = cd['GradingSheet_Target'],
+               GradingSheet_Accomplished = cd ['GradingSheet_Accomplished'],
+            )
+
+            IPCR_gradingsheet.author = request.user
+            IPCR_gradingsheet.GradingSheet_Submitted = date.today()
+            IPCR_gradingsheet.save()
+
+            messages.success(request, "The IPCR Form has been saved.") 
+            
+        if (form_studentadviced.is_valid()):
+            cd = form_studentadviced.cleaned_data
+            IPCR_studentadviced =IPCR_StudentAdviced_model(
+               StudentAdviced_Target = cd['StudentAdviced_Target'],
+               StudentAdviced_Accomplished = cd ['StudentAdviced_Accomplished'],
+            )
+
+            IPCR_studentadviced.author = request.user
+            IPCR_studentadviced.StudentAdviced_Submitted = date.today()
+            IPCR_studentadviced.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+            
+        if (form_accomplishmentreport.is_valid()):
+            cd = form_accomplishmentreport.cleaned_data
+            IPCR_accomplishmentreport =IPCR_AccomplishmentReport_model(
+               AccomplishmentReport_Target = cd['AccomplishmentReport_Target'],
+               AccomplishmentReport_Accomplished = cd ['AccomplishmentReport_Accomplished'],
+            )
+
+            IPCR_accomplishmentreport.author = request.user
+            IPCR_accomplishmentreport.AccomplishmentReport_Submitted = date.today()
+            IPCR_accomplishmentreport.save()
+
+            messages.success(request, "The IPCR Form has been saved.")                              
+            
     else:
             initial_data = {}
             if previous_response_syllabus:
@@ -149,7 +297,47 @@ def IPCRForm(request):
             if previous_response_teachingeffectiveness:
                 initial_data['TeachingEffectiveness_Target'] = previous_response_teachingeffectiveness.TeachingEffectiveness_Target
                 initial_data['TeachingEffectiveness_Accomplished'] = previous_response_teachingeffectiveness.TeachingEffectiveness_Accomplished                 
-                
+
+            if previous_response_classroomobservation:
+                initial_data['ClassroomObservation_Target'] = previous_response_classroomobservation.ClassroomObservation_Target
+                initial_data['ClassroomObservation_Accomplished'] = previous_response_classroomobservation.ClassroomObservation_Accomplished                                 
+
+            if previous_response_midtermtosrubrics:
+                initial_data['MidtermTOSRubrics_Target'] = previous_response_midtermtosrubrics.MidtermTOSRubrics_Target
+                initial_data['MidtermTOSRubrics_Accomplished'] = previous_response_midtermtosrubrics.MidtermTOSRubrics_Accomplished                                 
+
+            if previous_response_finaltermtosrubrics:
+                initial_data['FinaltermTOSRubrics_Target'] = previous_response_finaltermtosrubrics.FinaltermTOSRubrics_Target
+                initial_data['FinaltermTOSRubrics_Accomplished'] = previous_response_finaltermtosrubrics.FinaltermTOSRubrics_Accomplished                                 
+
+            if previous_response_midtermtestquestions:
+                initial_data['MidtermTestQuestions_Target'] = previous_response_midtermtestquestions.MidtermTestQuestions_Target
+                initial_data['MidtermTestQuestions_Accomplished'] = previous_response_midtermtestquestions.MidtermTestQuestions_Accomplished                                 
+
+            if previous_response_finaltermtestquestions:
+                initial_data['FinaltermTestQuestions_Target'] = previous_response_finaltermtestquestions.FinaltermTestQuestions_Target
+                initial_data['FinaltermTestQuestions_Accomplished'] = previous_response_finaltermtestquestions.FinaltermTestQuestions_Accomplished                                 
+
+            if previous_response_midtermanswerkey:
+                initial_data['MidtermAnswerKey_Target'] = previous_response_midtermanswerkey.MidtermAnswerKey_Target
+                initial_data['MidtermAnswerKey_Accomplished'] = previous_response_midtermanswerkey.MidtermAnswerKey_Accomplished                                 
+
+            if previous_response_finaltermanswerkey:
+                initial_data['FinaltermAnswerKey_Target'] = previous_response_finaltermanswerkey.FinaltermAnswerKey_Target
+                initial_data['FinaltermAnswerKey_Accomplished'] = previous_response_finaltermanswerkey.FinaltermAnswerKey_Accomplished                                 
+
+            if previous_response_gradingsheet:
+                initial_data['GradingSheet_Target'] = previous_response_gradingsheet.GradingSheet_Target
+                initial_data['GradingSheet_Accomplished'] = previous_response_gradingsheet.GradingSheet_Accomplished                                 
+
+            if previous_response_studentadviced:
+                initial_data['StudentAdviced_Target'] = previous_response_studentadviced.StudentAdviced_Target
+                initial_data['StudentAdviced_Accomplished'] = previous_response_studentadviced.StudentAdviced_Accomplished                                 
+
+            if previous_response_accomplishmentreport:
+                initial_data['AccomplishmentReport_Target'] = previous_response_accomplishmentreport.AccomplishmentReport_Target
+                initial_data['AccomplishmentReport_Accomplished'] = previous_response_accomplishmentreport.AccomplishmentReport_Accomplished
+
 
             form_syllabus = IPCR_Syllabus_form(initial=initial_data)
             form_courseguide = IPCR_CourseGuide_form(initial=initial_data)
@@ -158,11 +346,28 @@ def IPCRForm(request):
             form_attendancesheet = IPCR_AttendanceSheet_form(initial=initial_data)
             form_classrecord = IPCR_ClassRecord_form(initial=initial_data)
             form_teachingeffectiveness = IPCR_TeachingEffectiveness_form(initial=initial_data)
+            form_classroomobservation = IPCR_ClassroomObservation_form(initial=initial_data)
+            form_midtermtosrubrics = IPCR_MidtermTOSRubrics_form(initial=initial_data)
+            form_finaltermtosrubrics = IPCR_FinaltermTOSRubrics_form(initial=initial_data)
+            form_midtermtestquestions = IPCR_MidtermTestQuestions_form(initial=initial_data)
+            form_finaltermtestquestions = IPCR_FinaltermTestQuestions_form(initial=initial_data)
+            form_midtermanswerkey = IPCR_MidtermAnswerKey_form(initial=initial_data)
+            form_finaltermanswerkey = IPCR_FinaltermAnswerKey_form(initial=initial_data)
+            form_gradingsheet = IPCR_GradingSheet_form(initial=initial_data)
+            form_studentadviced = IPCR_StudentAdviced_form(initial=initial_data)
+            form_accomplishmentreport = IPCR_AccomplishmentReport_form(initial=initial_data)
+           
+
+
     
     return render (request, 'forms/IPCRForm.html', {'form_syllabus' : form_syllabus , 'form_courseguide' : form_courseguide,
                                                     'form_SLM' : form_SLM, 'form_subjectareas' : form_subjectareas, 'form_attendancesheet' : form_attendancesheet,
                                                     'form_classrecord' : form_classrecord, 'form_teachingeffectiveness' : form_teachingeffectiveness,
-                                                    })
+                                                    'form_classroomobservation' : form_classroomobservation, 'form_midtermtosrubrics' :form_midtermtosrubrics, 
+                                                    'form_finaltermtosrubrics' :form_finaltermtosrubrics, 'form_midtermtestquestions' :form_midtermtestquestions,
+                                                    'form_finaltermtestquestions' :form_finaltermtestquestions, 'form_midtermanswerkey' :form_midtermanswerkey,
+                                                    'form_finaltermanswerkey' :form_finaltermanswerkey, 'form_gradingsheet' :form_gradingsheet,
+                                                    'form_studentadviced' :form_studentadviced, 'form_accomplishmentreport' :form_accomplishmentreport, })
 
 
 

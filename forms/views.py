@@ -26,6 +26,13 @@ def IPCRForm(request):
     previous_response_gradingsheet = IPCR_GradingSheet_model.objects.filter(author=request.user).last()
     previous_response_studentadviced = IPCR_StudentAdviced_model.objects.filter(author=request.user).last()
     previous_response_accomplishmentreport = IPCR_AccomplishmentReport_model.objects.filter(author=request.user).last()
+    previous_response_researchproposalsubmitted = IPCR_ResearchProposalSubmitted_model.objects.filter(author=request.user).last()
+    previous_response_researchimplemented = IPCR_ResearchImplemented_model.objects.filter(author=request.user).last()
+    previous_response_researchpresented = IPCR_ResearchPresented_model.objects.filter(author=request.user).last()
+    previous_response_researchpublished = IPCR_ResearchPublished_model.objects.filter(author=request.user).last()
+    previous_response_approvediprights = IPCR_ApprovedIPRights_model.objects.filter(author=request.user).last()
+    previous_response_researchutilized = IPCR_ResearchUtilized_model.objects.filter(author=request.user).last()
+    previous_response_numberofcitations = IPCR_NumberOfCitations_model.objects.filter(author=request.user).last()
    
     
     if (request.method == 'POST'):
@@ -46,6 +53,13 @@ def IPCRForm(request):
         form_gradingsheet = IPCR_GradingSheet_form(request.POST)   
         form_studentadviced = IPCR_StudentAdviced_form(request.POST)   
         form_accomplishmentreport = IPCR_AccomplishmentReport_form(request.POST)   
+        form_researchproposalsubmitted = IPCR_ResearchProposalSubmitted_form(request.POST)   
+        form_researchimplemented = IPCR_ResearchImplemented_form(request.POST)   
+        form_researchpresented = IPCR_ResearchPresented_form(request.POST)   
+        form_researchpublished = IPCR_ResearchPublished_form(request.POST)   
+        form_approvediprights = IPCR_ApprovedIPRights_form(request.POST)   
+        form_researchutilized = IPCR_ResearchUtilized_form(request.POST)   
+        form_numberofcitations = IPCR_NumberOfCitations_form(request.POST)   
 
         
               
@@ -266,8 +280,101 @@ def IPCRForm(request):
             IPCR_accomplishmentreport.AccomplishmentReport_Submitted = date.today()
             IPCR_accomplishmentreport.save()
 
-            messages.success(request, "The IPCR Form has been saved.")                              
+            messages.success(request, "The IPCR Form has been saved.")
+        
+        if (form_researchproposalsubmitted.is_valid()):
+            cd = form_researchproposalsubmitted.cleaned_data
+            IPCR_researchproposalsubmitted =IPCR_ResearchProposalSubmitted_model(
+               ResearchProposalSubmitted_Target = cd['ResearchProposalSubmitted_Target'],
+               ResearchProposalSubmitted_Accomplished = cd ['ResearchProposalSubmitted_Accomplished'],
+            )
+
+            IPCR_researchproposalsubmitted.author = request.user
+            IPCR_researchproposalsubmitted.ResearchProposalSubmitted_Submitted = date.today()
+            IPCR_researchproposalsubmitted.save()
+
+            messages.success(request, "The IPCR Form has been saved.")                                
+ 
+        if (form_researchimplemented.is_valid()):
+            cd = form_researchimplemented.cleaned_data
+            IPCR_researchimplemented =IPCR_ResearchImplemented_model(
+               ResearchImplemented_Target = cd['ResearchImplemented_Target'],
+               ResearchImplemented_Accomplished = cd ['ResearchImplemented_Accomplished'],
+            )
+
+            IPCR_researchimplemented.author = request.user
+            IPCR_researchimplemented.ResearchImplemented_Submitted = date.today()
+            IPCR_researchimplemented.save()
+
+            messages.success(request, "The IPCR Form has been saved.")  
+
+        if (form_researchpresented.is_valid()):
+            cd = form_researchpresented.cleaned_data
+            IPCR_researchpresented =IPCR_ResearchPresented_model(
+               ResearchPresented_Target = cd['ResearchPresented_Target'],
+               ResearchPresented_Accomplished = cd ['ResearchPresented_Accomplished'],
+            )
+
+            IPCR_researchpresented.author = request.user
+            IPCR_researchpresented.ResearchPresented_Submitted = date.today()
+            IPCR_researchpresented.save()
+
+            messages.success(request, "The IPCR Form has been saved.") 
+
+        if (form_researchpublished.is_valid()):
+            cd = form_researchpublished.cleaned_data
+            IPCR_researchpublished =IPCR_ResearchPublished_model(
+               ResearchPublished_Target = cd['ResearchPublished_Target'],
+               ResearchPublished_Accomplished = cd ['ResearchPublished_Accomplished'],
+            )
+
+            IPCR_researchpublished.author = request.user
+            IPCR_researchpublished.ResearchPublished_Submitted = date.today()
+            IPCR_researchpublished.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
             
+        if (form_approvediprights.is_valid()):
+            cd = form_approvediprights.cleaned_data
+            IPCR_approvediprights =IPCR_ApprovedIPRights_model(
+               ApprovedIPRights_Target = cd['ApprovedIPRights_Target'],
+               ApprovedIPRights_Accomplished = cd ['ApprovedIPRights_Accomplished'],
+            )
+
+            IPCR_approvediprights.author = request.user
+            IPCR_approvediprights.ApprovedIPRights_Submitted = date.today()
+            IPCR_approvediprights.save()
+
+            messages.success(request, "The IPCR Form has been saved.")  
+            
+        if (form_researchutilized.is_valid()):
+            cd = form_researchutilized.cleaned_data
+            IPCR_researchutilized =IPCR_ResearchUtilized_model(
+               ResearchUtilized_Target = cd['ResearchUtilized_Target'],
+               ResearchUtilized_Accomplished = cd ['ResearchUtilized_Accomplished'],
+            )
+
+            IPCR_researchutilized.author = request.user
+            IPCR_researchutilized.ResearchUtilized_Submitted = date.today()
+            IPCR_researchutilized.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_numberofcitations.is_valid()):
+            cd = form_numberofcitations.cleaned_data
+            IPCR_numberofcitations =IPCR_NumberOfCitations_model(
+               NumberOfCitations_Target = cd['NumberOfCitations_Target'],
+               NumberOfCitations_Accomplished = cd ['NumberOfCitations_Accomplished'],
+            )
+
+            IPCR_numberofcitations.author = request.user
+            IPCR_numberofcitations.NumberOfCitations_Submitted = date.today()
+            IPCR_numberofcitations.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+
+          
     else:
             initial_data = {}
             if previous_response_syllabus:
@@ -338,6 +445,35 @@ def IPCRForm(request):
                 initial_data['AccomplishmentReport_Target'] = previous_response_accomplishmentreport.AccomplishmentReport_Target
                 initial_data['AccomplishmentReport_Accomplished'] = previous_response_accomplishmentreport.AccomplishmentReport_Accomplished
 
+            if previous_response_researchproposalsubmitted:
+                initial_data['ResearchProposalSubmitted_Target'] = previous_response_researchproposalsubmitted.ResearchProposalSubmitted_Target
+                initial_data['ResearchProposalSubmitted_Accomplished'] = previous_response_researchproposalsubmitted.ResearchProposalSubmitted_Accomplished
+
+            if previous_response_researchimplemented:
+                initial_data['ResearchImplemented_Target'] = previous_response_researchimplemented.ResearchImplemented_Target
+                initial_data['ResearchImplemented_Accomplished'] = previous_response_researchimplemented.ResearchImplemented_Accomplished
+
+            if previous_response_researchpresented:
+                initial_data['ResearchPresented_Target'] = previous_response_researchpresented.ResearchPresented_Target
+                initial_data['ResearchPresented_Accomplished'] = previous_response_researchpresented.ResearchPresented_Accomplished
+
+            if previous_response_researchpublished:
+                initial_data['ResearchPublished_Target'] = previous_response_researchpublished.ResearchPublished_Target
+                initial_data['ResearchPublished_Accomplished'] = previous_response_researchpublished.ResearchPublished_Accomplished
+
+            if previous_response_approvediprights:
+                initial_data['ApprovedIPRights_Target'] = previous_response_approvediprights.ApprovedIPRights_Target
+                initial_data['ApprovedIPRights_Accomplished'] = previous_response_approvediprights.ApprovedIPRights_Accomplished
+
+            if previous_response_researchutilized:
+                initial_data['ResearchUtilized_Target'] = previous_response_researchutilized.ResearchUtilized_Target
+                initial_data['ResearchUtilized_Accomplished'] = previous_response_researchutilized.ResearchUtilized_Accomplished
+
+            if previous_response_numberofcitations:
+                initial_data['NumberOfCitations_Target'] = previous_response_numberofcitations.NumberOfCitations_Target
+                initial_data['NumberOfCitations_Accomplished'] = previous_response_numberofcitations.NumberOfCitations_Accomplished
+
+
 
             form_syllabus = IPCR_Syllabus_form(initial=initial_data)
             form_courseguide = IPCR_CourseGuide_form(initial=initial_data)
@@ -356,7 +492,14 @@ def IPCRForm(request):
             form_gradingsheet = IPCR_GradingSheet_form(initial=initial_data)
             form_studentadviced = IPCR_StudentAdviced_form(initial=initial_data)
             form_accomplishmentreport = IPCR_AccomplishmentReport_form(initial=initial_data)
-           
+            form_researchproposalsubmitted = IPCR_ResearchProposalSubmitted_form(initial=initial_data)
+            form_researchimplemented = IPCR_ResearchImplemented_form(initial=initial_data)
+            form_researchpresented = IPCR_ResearchPresented_form(initial=initial_data)
+            form_researchpublished = IPCR_ResearchPublished_form(initial=initial_data)
+            form_approvediprights = IPCR_ApprovedIPRights_form(initial=initial_data)
+            form_researchutilized = IPCR_ResearchUtilized_form(initial=initial_data)
+            form_numberofcitations = IPCR_NumberOfCitations_form(initial=initial_data)
+         
 
 
     
@@ -367,7 +510,11 @@ def IPCRForm(request):
                                                     'form_finaltermtosrubrics' :form_finaltermtosrubrics, 'form_midtermtestquestions' :form_midtermtestquestions,
                                                     'form_finaltermtestquestions' :form_finaltermtestquestions, 'form_midtermanswerkey' :form_midtermanswerkey,
                                                     'form_finaltermanswerkey' :form_finaltermanswerkey, 'form_gradingsheet' :form_gradingsheet,
-                                                    'form_studentadviced' :form_studentadviced, 'form_accomplishmentreport' :form_accomplishmentreport, })
+                                                    'form_studentadviced' :form_studentadviced, 'form_accomplishmentreport' :form_accomplishmentreport,
+                                                    'form_researchproposalsubmitted' :form_researchproposalsubmitted, 'form_researchimplemented' :form_researchimplemented,
+                                                    'form_researchpresented' :form_researchpresented, 'form_researchpublished' :form_researchpublished,
+                                                    'form_approvediprights' :form_approvediprights, 'form_researchutilized' :form_researchutilized,
+                                                    'form_numberofcitations' :form_numberofcitations, })
 
 
 

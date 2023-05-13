@@ -33,7 +33,23 @@ def IPCRForm(request):
     previous_response_approvediprights = IPCR_ApprovedIPRights_model.objects.filter(author=request.user).last()
     previous_response_researchutilized = IPCR_ResearchUtilized_model.objects.filter(author=request.user).last()
     previous_response_numberofcitations = IPCR_NumberOfCitations_model.objects.filter(author=request.user).last()
-   
+    previous_response_extensionproposalsubmitted = IPCR_ExtensionProposalSubmitted_model.objects.filter(author=request.user).last()
+    previous_response_persontrained = IPCR_PersonTrained_model.objects.filter(author=request.user).last()
+    previous_response_personavailedratedgood = IPCR_PersonAvailedRatedGood_model.objects.filter(author=request.user).last()   
+    previous_response_persontrainedratedgood = IPCR_PersonTrainedRatedGood_model.objects.filter(author=request.user).last()   
+    previous_response_technicaladvice = IPCR_TechnicalAdvice_model.objects.filter(author=request.user).last()   
+    previous_response_accomplishmentreportdeligatedassignment = IPCR_AccomplishmentReportDeligatedAssignment_model.objects.filter(author=request.user).last()   
+    previous_response_flagraisingattendance = IPCR_FlagRaisingAttendance_model.objects.filter(author=request.user).last()   
+    previous_response_flagloweringattendance = IPCR_FlagLoweringAttendance_model.objects.filter(author=request.user).last()   
+    previous_response_wellnessprogramattendance = IPCR_WellnessProgramAttendance_model.objects.filter(author=request.user).last()   
+    previous_response_schoolcelebrationattendance = IPCR_SchoolCelebrationAttendance_model.objects.filter(author=request.user).last()   
+    previous_response_trainingattendance = IPCR_TrainingAttendance_model.objects.filter(author=request.user).last()   
+    previous_response_facultymeetingattendance = IPCR_FacultyMeetingAttendance_model.objects.filter(author=request.user).last()   
+    previous_response_accreditationattendance = IPCR_AccreditationAttendance_model.objects.filter(author=request.user).last()   
+    previous_response_spiritualactivityattendance = IPCR_SpiritualActivityAttendance_model.objects.filter(author=request.user).last()   
+
+
+
     
     if (request.method == 'POST'):
         form_syllabus = IPCR_Syllabus_form(request.POST)
@@ -60,9 +76,22 @@ def IPCRForm(request):
         form_approvediprights = IPCR_ApprovedIPRights_form(request.POST)   
         form_researchutilized = IPCR_ResearchUtilized_form(request.POST)   
         form_numberofcitations = IPCR_NumberOfCitations_form(request.POST)   
+        form_extensionproposalsubmitted = IPCR_ExtensionProposalSubmitted_form(request.POST)   
+        form_persontrained = IPCR_PersonTrained_form(request.POST)   
+        form_personavailedratedgood = IPCR_PersonAvailedRatedGood_form(request.POST)   
+        form_persontrainedratedgood = IPCR_PersonTrainedRatedGood_form(request.POST)          
+        form_technicaladvice = IPCR_TechnicalAdvice_form(request.POST) 
+        form_accomplishmentreportdeligatedassignment = IPCR_AccomplishmentReportDeligatedAssignment_form(request.POST)         
+        form_flagraisingattendance = IPCR_FlagRaisingAttendance_form(request.POST)        
+        form_flagloweringattendance = IPCR_FlagLoweringAttendance_form(request.POST)          
+        form_wellnessprogramattendance = IPCR_WellnessProgramAttendance_form(request.POST)          
+        form_schoolcelebrationattendance = IPCR_SchoolCelebrationAttendance_form(request.POST) 
+        form_trainingattendance = IPCR_TrainingAttendance_form(request.POST) 
+        form_facultymeetingattendance = IPCR_FacultyMeetingAttendance_form(request.POST) 
+        form_accreditationattendance = IPCR_AccreditationAttendance_form(request.POST) 
+        form_spiritualactivityattendance = IPCR_SpiritualActivityAttendance_form(request.POST) 
 
-        
-              
+                      
         if (form_syllabus.is_valid()):
             cd = form_syllabus.cleaned_data
             IPCR_syllabus = IPCR_Syllabus_model(
@@ -373,8 +402,188 @@ def IPCRForm(request):
 
             messages.success(request, "The IPCR Form has been saved.")
 
+        if (form_extensionproposalsubmitted.is_valid()):
+            cd = form_extensionproposalsubmitted.cleaned_data
+            IPCR_extensionproposalsubmitted =IPCR_ExtensionProposalSubmitted_model(
+               ExtensionProposalSubmitted_Target = cd['ExtensionProposalSubmitted_Target'],
+               ExtensionProposalSubmitted_Accomplished = cd ['ExtensionProposalSubmitted_Accomplished'],
+            )
 
-          
+            IPCR_extensionproposalsubmitted.author = request.user
+            IPCR_extensionproposalsubmitted.ExtensionProposalSubmitted_Submitted = date.today()
+            IPCR_extensionproposalsubmitted.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_persontrained.is_valid()):
+            cd = form_persontrained.cleaned_data
+            IPCR_persontrained =IPCR_PersonTrained_model(
+               PersonTrained_Target = cd['PersonTrained_Target'],
+               PersonTrained_Accomplished = cd ['PersonTrained_Accomplished'],
+            )
+
+            IPCR_persontrained.author = request.user
+            IPCR_persontrained.PersonTrained_Submitted = date.today()
+            IPCR_persontrained.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_personavailedratedgood.is_valid()):
+            cd = form_personavailedratedgood.cleaned_data
+            IPCR_personavailedratedgood =IPCR_PersonAvailedRatedGood_model(
+               PersonAvailedRatedGood_Target = cd['PersonAvailedRatedGood_Target'],
+               PersonAvailedRatedGood_Accomplished = cd ['PersonAvailedRatedGood_Accomplished'],
+            )
+
+            IPCR_personavailedratedgood.author = request.user
+            IPCR_personavailedratedgood.PersonAvailedRatedGood_Submitted = date.today()
+            IPCR_personavailedratedgood.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_persontrainedratedgood.is_valid()):
+            cd = form_persontrainedratedgood.cleaned_data
+            IPCR_persontrainedratedgood =IPCR_PersonTrainedRatedGood_model(
+               PersonTrainedRatedGood_Target = cd['PersonTrainedRatedGood_Target'],
+               PersonTrainedRatedGood_Accomplished = cd ['PersonTrainedRatedGood_Accomplished'],
+            )
+
+            IPCR_persontrainedratedgood.author = request.user
+            IPCR_persontrainedratedgood.PersonTrainedRatedGood_Submitted = date.today()
+            IPCR_persontrainedratedgood.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_technicaladvice.is_valid()):
+            cd = form_technicaladvice.cleaned_data
+            IPCR_technicaladvice =IPCR_TechnicalAdvice_model(
+               TechnicalAdvice_Target = cd['TechnicalAdvice_Target'],
+               TechnicalAdvice_Accomplished = cd ['TechnicalAdvice_Accomplished'],
+            )
+
+            IPCR_technicaladvice.author = request.user
+            IPCR_technicaladvice.TechnicalAdvice_Submitted = date.today()
+            IPCR_technicaladvice.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_accomplishmentreportdeligatedassignment.is_valid()):
+            cd = form_accomplishmentreportdeligatedassignment.cleaned_data
+            IPCR_accomplishmentreportdeligatedassignment =IPCR_AccomplishmentReportDeligatedAssignment_model(
+               AccomplishmentReportDeligatedAssignment_Target = cd['AccomplishmentReportDeligatedAssignment_Target'],
+               AccomplishmentReportDeligatedAssignment_Accomplished = cd ['AccomplishmentReportDeligatedAssignment_Accomplished'],
+            )
+
+            IPCR_accomplishmentreportdeligatedassignment.author = request.user
+            IPCR_accomplishmentreportdeligatedassignment.AccomplishmentReportDeligatedAssignment_Submitted = date.today()
+            IPCR_accomplishmentreportdeligatedassignment.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_flagraisingattendance.is_valid()):
+            cd = form_flagraisingattendance.cleaned_data
+            IPCR_flagraisingattendance =IPCR_FlagRaisingAttendance_model(
+               FlagRaisingAttendance_Target = cd['FlagRaisingAttendance_Target'],
+               FlagRaisingAttendance_Accomplished = cd ['FlagRaisingAttendance_Accomplished'],
+            )
+
+            IPCR_flagraisingattendance.author = request.user
+            IPCR_flagraisingattendance.FlagRaisingAttendance_Submitted = date.today()
+            IPCR_flagraisingattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_flagloweringattendance.is_valid()):
+            cd = form_flagloweringattendance.cleaned_data
+            IPrm_flagloweringattendance =IPCR_FlagLoweringAttendance_model(
+               FlagLoweringAttendance_Target = cd['FlagLoweringAttendance_Target'],
+               FlagLoweringAttendance_Accomplished = cd ['FlagLoweringAttendance_Accomplished'],
+            )
+
+            IPrm_flagloweringattendance.author = request.user
+            IPrm_flagloweringattendance.FlagLoweringAttendance_Submitted = date.today()
+            IPrm_flagloweringattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_wellnessprogramattendance.is_valid()):
+            cd = form_wellnessprogramattendance.cleaned_data
+            IPCR_wellnessprogramattendance =IPCR_WellnessProgramAttendance_model(
+               WellnessProgramAttendance_Target = cd['WellnessProgramAttendance_Target'],
+               WellnessProgramAttendance_Accomplished = cd ['WellnessProgramAttendance_Accomplished'],
+            )
+
+            IPCR_wellnessprogramattendance.author = request.user
+            IPCR_wellnessprogramattendance.WellnessProgramAttendance_Submitted = date.today()
+            IPCR_wellnessprogramattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_schoolcelebrationattendance.is_valid()):
+            cd = form_schoolcelebrationattendance.cleaned_data
+            IPCR_schoolcelebrationattendance =IPCR_SchoolCelebrationAttendance_model(
+               SchoolCelebrationAttendance_Target = cd['SchoolCelebrationAttendance_Target'],
+               SchoolCelebrationAttendance_Accomplished = cd ['SchoolCelebrationAttendance_Accomplished'],
+            )
+
+            IPCR_schoolcelebrationattendance.author = request.user
+            IPCR_schoolcelebrationattendance.SchoolCelebrationAttendance_Submitted = date.today()
+            IPCR_schoolcelebrationattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_trainingattendance.is_valid()):
+            cd = form_trainingattendance.cleaned_data
+            IPCR_trainingattendance =IPCR_TrainingAttendance_model(
+               TrainingAttendance_Target = cd['TrainingAttendance_Target'],
+               TrainingAttendance_Accomplished = cd ['TrainingAttendance_Accomplished'],
+            )
+
+            IPCR_trainingattendance.author = request.user
+            IPCR_trainingattendance.TrainingAttendance_Submitted = date.today()
+            IPCR_trainingattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_facultymeetingattendance.is_valid()):
+            cd = form_facultymeetingattendance.cleaned_data
+            IPCR_facultymeetingattendance =IPCR_FacultyMeetingAttendance_model(
+               FacultyMeetingAttendance_Target = cd['FacultyMeetingAttendance_Target'],
+               FacultyMeetingAttendance_Accomplished = cd ['FacultyMeetingAttendance_Accomplished'],
+            )
+
+            IPCR_facultymeetingattendance.author = request.user
+            IPCR_facultymeetingattendance.FacultyMeetingAttendance_Submitted = date.today()
+            IPCR_facultymeetingattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_accreditationattendance.is_valid()):
+            cd = form_accreditationattendance.cleaned_data
+            IPCR_accreditationattendance =IPCR_AccreditationAttendance_model(
+               AccreditationAttendance_Target = cd['AccreditationAttendance_Target'],
+               AccreditationAttendance_Accomplished = cd ['AccreditationAttendance_Accomplished'],
+            )
+
+            IPCR_accreditationattendance.author = request.user
+            IPCR_accreditationattendance.AccreditationAttendance_Submitted = date.today()
+            IPCR_accreditationattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+
+        if (form_spiritualactivityattendance.is_valid()):
+            cd = form_spiritualactivityattendance.cleaned_data
+            IPCR_spiritualactivityattendance =IPCR_SpiritualActivityAttendance_model(
+               SpiritualActivityAttendance_Target = cd['SpiritualActivityAttendance_Target'],
+               SpiritualActivityAttendance_Accomplished = cd ['SpiritualActivityAttendance_Accomplished'],
+            )
+
+            IPCR_spiritualactivityattendance.author = request.user
+            IPCR_spiritualactivityattendance.SpiritualActivityAttendance_Submitted = date.today()
+            IPCR_spiritualactivityattendance.save()
+
+            messages.success(request, "The IPCR Form has been saved.")
+           
     else:
             initial_data = {}
             if previous_response_syllabus:
@@ -473,6 +682,62 @@ def IPCRForm(request):
                 initial_data['NumberOfCitations_Target'] = previous_response_numberofcitations.NumberOfCitations_Target
                 initial_data['NumberOfCitations_Accomplished'] = previous_response_numberofcitations.NumberOfCitations_Accomplished
 
+            if previous_response_extensionproposalsubmitted:
+                initial_data['ExtensionProposalSubmitted_Target'] = previous_response_extensionproposalsubmitted.ExtensionProposalSubmitted_Target
+                initial_data['ExtensionProposalSubmitted_Accomplished'] = previous_response_extensionproposalsubmitted.ExtensionProposalSubmitted_Accomplished
+
+            if previous_response_persontrained:
+                initial_data['PersonTrained_Target'] = previous_response_persontrained.PersonTrained_Target
+                initial_data['PersonTrained_Accomplished'] = previous_response_persontrained.PersonTrained_Accomplished
+
+            if previous_response_personavailedratedgood:
+                initial_data['PersonAvailedRatedGood_Target'] = previous_response_personavailedratedgood.PersonAvailedRatedGood_Target
+                initial_data['PersonAvailedRatedGood_Accomplished'] = previous_response_personavailedratedgood.PersonAvailedRatedGood_Accomplished
+
+            if previous_response_persontrainedratedgood:
+                initial_data['PersonTrainedRatedGood_Target'] = previous_response_persontrainedratedgood.PersonTrainedRatedGood_Target
+                initial_data['PersonTrainedRatedGood_Accomplished'] = previous_response_persontrainedratedgood.PersonTrainedRatedGood_Accomplished
+
+            if previous_response_technicaladvice:
+                initial_data['TechnicalAdvice_Target'] = previous_response_technicaladvice.TechnicalAdvice_Target
+                initial_data['TechnicalAdvice_Accomplished'] = previous_response_technicaladvice.TechnicalAdvice_Accomplished
+
+            if previous_response_accomplishmentreportdeligatedassignment:
+                initial_data['AccomplishmentReportDeligatedAssignment_Target'] = previous_response_accomplishmentreportdeligatedassignment.AccomplishmentReportDeligatedAssignment_Target
+                initial_data['AccomplishmentReportDeligatedAssignment_Accomplished'] = previous_response_accomplishmentreportdeligatedassignment.AccomplishmentReportDeligatedAssignment_Accomplished
+
+            if previous_response_flagraisingattendance:
+                initial_data['FlagRaisingAttendance_Target'] = previous_response_flagraisingattendance.FlagRaisingAttendance_Target
+                initial_data['FlagRaisingAttendance_Accomplished'] = previous_response_flagraisingattendance.FlagRaisingAttendance_Accomplished
+
+            if previous_response_flagloweringattendance:
+                initial_data['FlagLoweringAttendance_Target'] = previous_response_flagloweringattendance.FlagLoweringAttendance_Target
+                initial_data['FlagLoweringAttendance_Accomplished'] = previous_response_flagloweringattendance.FlagLoweringAttendance_Accomplished
+
+            if previous_response_wellnessprogramattendance:
+                initial_data['WellnessProgramAttendance_Target'] = previous_response_wellnessprogramattendance.WellnessProgramAttendance_Target
+                initial_data['WellnessProgramAttendance_Accomplished'] = previous_response_wellnessprogramattendance.WellnessProgramAttendance_Accomplished
+
+            if previous_response_schoolcelebrationattendance:
+                initial_data['SchoolCelebrationAttendance_Target'] = previous_response_schoolcelebrationattendance.SchoolCelebrationAttendance_Target
+                initial_data['SchoolCelebrationAttendance_Accomplished'] = previous_response_schoolcelebrationattendance.SchoolCelebrationAttendance_Accomplished
+
+            if previous_response_trainingattendance:
+                initial_data['TrainingAttendance_Target'] = previous_response_trainingattendance.TrainingAttendance_Target
+                initial_data['TrainingAttendance_Accomplished'] = previous_response_trainingattendance.TrainingAttendance_Accomplished
+
+            if previous_response_facultymeetingattendance:
+                initial_data['FacultyMeetingAttendance_Target'] = previous_response_facultymeetingattendance.FacultyMeetingAttendance_Target
+                initial_data['FacultyMeetingAttendance_Accomplished'] = previous_response_facultymeetingattendance.FacultyMeetingAttendance_Accomplished
+
+            if previous_response_accreditationattendance:
+                initial_data['AccreditationAttendance_Target'] = previous_response_accreditationattendance.AccreditationAttendance_Target
+                initial_data['AccreditationAttendance_Accomplished'] = previous_response_accreditationattendance.AccreditationAttendance_Accomplished
+
+            if previous_response_spiritualactivityattendance:
+                initial_data['SpiritualActivityAttendance_Target'] = previous_response_spiritualactivityattendance.SpiritualActivityAttendance_Target
+                initial_data['SpiritualActivityAttendance_Accomplished'] = previous_response_spiritualactivityattendance.SpiritualActivityAttendance_Accomplished
+
 
 
             form_syllabus = IPCR_Syllabus_form(initial=initial_data)
@@ -499,8 +764,20 @@ def IPCRForm(request):
             form_approvediprights = IPCR_ApprovedIPRights_form(initial=initial_data)
             form_researchutilized = IPCR_ResearchUtilized_form(initial=initial_data)
             form_numberofcitations = IPCR_NumberOfCitations_form(initial=initial_data)
-         
-
+            form_extensionproposalsubmitted = IPCR_ExtensionProposalSubmitted_form(initial=initial_data)        
+            form_persontrained = IPCR_PersonTrained_form(initial=initial_data) 
+            form_personavailedratedgood = IPCR_PersonAvailedRatedGood_form(initial=initial_data) 
+            form_persontrainedratedgood = IPCR_PersonTrainedRatedGood_form(initial=initial_data)
+            form_technicaladvice = IPCR_TechnicalAdvice_form(initial=initial_data)
+            form_accomplishmentreportdeligatedassignment = IPCR_AccomplishmentReportDeligatedAssignment_form(initial=initial_data)
+            form_flagraisingattendance = IPCR_FlagRaisingAttendance_form(initial=initial_data)
+            form_flagloweringattendance = IPCR_FlagLoweringAttendance_form(initial=initial_data)
+            form_wellnessprogramattendance = IPCR_WellnessProgramAttendance_form(initial=initial_data)
+            form_schoolcelebrationattendance = IPCR_SchoolCelebrationAttendance_form(initial=initial_data)
+            form_trainingattendance = IPCR_TrainingAttendance_form(initial=initial_data)
+            form_facultymeetingattendance = IPCR_FacultyMeetingAttendance_form(initial=initial_data)
+            form_accreditationattendance = IPCR_AccreditationAttendance_form(initial=initial_data)
+            form_spiritualactivityattendance = IPCR_SpiritualActivityAttendance_form(initial=initial_data)
 
     
     return render (request, 'forms/IPCRForm.html', {'form_syllabus' : form_syllabus , 'form_courseguide' : form_courseguide,
@@ -514,7 +791,14 @@ def IPCRForm(request):
                                                     'form_researchproposalsubmitted' :form_researchproposalsubmitted, 'form_researchimplemented' :form_researchimplemented,
                                                     'form_researchpresented' :form_researchpresented, 'form_researchpublished' :form_researchpublished,
                                                     'form_approvediprights' :form_approvediprights, 'form_researchutilized' :form_researchutilized,
-                                                    'form_numberofcitations' :form_numberofcitations, })
+                                                    'form_numberofcitations' :form_numberofcitations, 'form_extensionproposalsubmitted' :form_extensionproposalsubmitted, 
+                                                    'form_persontrained' :form_persontrained, 'form_personavailedratedgood' :form_personavailedratedgood,
+                                                    'form_persontrainedratedgood' :form_persontrainedratedgood, 'form_technicaladvice' :form_technicaladvice,
+                                                    'form_accomplishmentreportdeligatedassignment' :form_accomplishmentreportdeligatedassignment, 'form_flagraisingattendance' :form_flagraisingattendance,
+                                                    'form_flagloweringattendance' :form_flagloweringattendance, 'form_wellnessprogramattendance' :form_wellnessprogramattendance, 
+                                                    'form_schoolcelebrationattendance' :form_schoolcelebrationattendance, 'form_trainingattendance' :form_trainingattendance,
+                                                    'form_facultymeetingattendance' :form_facultymeetingattendance, 'form_accreditationattendance' :form_accreditationattendance,
+                                                    'form_spiritualactivityattendance' :form_spiritualactivityattendance,})
 
 
 
